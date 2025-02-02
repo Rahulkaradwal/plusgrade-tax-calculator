@@ -4,7 +4,6 @@ export const calculateTax = (
   annualIncome: number,
   brackets: TaxBracket[]
 ): TaxCalculationResult => {
-  console.log("brackets", brackets, annualIncome);
   let totalTax = 0;
   const taxesPerBand = brackets.map((bracket) => {
     const taxableAmount = Math.max(

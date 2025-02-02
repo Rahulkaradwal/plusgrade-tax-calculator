@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { TaxBracket } from "../Types";
 import { URL } from "../utils/API_URL";
 
@@ -7,7 +7,7 @@ export const useTaxBracket = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchTaxBracket = useCallback(async (year: string) => {
+  const fetchTaxBracket = async (year: string) => {
     setLoading(true);
     setError(null);
 
@@ -22,11 +22,12 @@ export const useTaxBracket = () => {
       return tax_brackets as TaxBracket[]; // Return the fetched data
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred.");
+
       return null;
     } finally {
       setLoading(false);
     }
-  }, []);
+  };
 
-  return { loading, error, setError, fetchTaxBracket };
+  return { loading, error, fetchTaxBracket };
 };

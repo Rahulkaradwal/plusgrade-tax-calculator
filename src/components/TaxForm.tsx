@@ -5,7 +5,6 @@ import TaxResult from "./TaxResult";
 import Error from "./Error";
 import { useTaxFormInput } from "../hooks/useTaxFormInput";
 import SelectField from "./SelectField";
-import { memo, useCallback } from "react";
 
 function TaxForm() {
   // custom hooks
@@ -13,16 +12,13 @@ function TaxForm() {
   const { taxResult, loading, fetchError, calculate } = useTaxCalculation();
 
   // handles the form submission
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
-      e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-      if (validate() && !loading) {
-        await calculate(formData.annualIncome, formData.taxYear);
-      }
-    },
-    [formData, validate, calculate, loading]
-  );
+    if (validate() && !loading) {
+      await calculate(formData.annualIncome, formData.taxYear);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -52,10 +48,10 @@ function TaxForm() {
         disabled={loading}
       />
 
-      {fetchError && <Error message={fetchError} />}
+      {fetchError && <Error type="Result" message={fetchError} />}
       {!fetchError && taxResult && <TaxResult taxResult={taxResult} />}
     </form>
   );
 }
 
-export default memo(TaxForm);
+export default TaxForm;

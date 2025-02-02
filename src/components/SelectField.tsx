@@ -1,3 +1,5 @@
+import Error from "./Error";
+
 interface SelectFieldProps {
   id: string;
   label: string;
@@ -40,9 +42,7 @@ export default function SelectField({
           </option>
         ))}
       </select>
-      {errorMessage && (
-        <p className="text-red-500 text-sm mt-1">{errorMessage}</p>
-      )}
+      {errorMessage && <Error message={errorMessage} type="Input" />}
     </div>
   );
 }

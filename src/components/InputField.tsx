@@ -1,4 +1,5 @@
 import { memo } from "react";
+import Error from "./Error";
 
 interface InputFieldProps {
   id: string;
@@ -6,7 +7,6 @@ interface InputFieldProps {
   value: string;
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   type?: string;
   errorMessage?: string;
 }
@@ -17,7 +17,6 @@ function InputField({
   value,
   name,
   onChange,
-  onBlur,
   type = "text",
   errorMessage,
 }: InputFieldProps) {
@@ -32,7 +31,6 @@ function InputField({
         name={name}
         value={value}
         onChange={onChange}
-        onBlur={onBlur}
         className={`w-full px-4 py-2 bg-gray-200 rounded-lg focus:outline-none focus:ring-2 transition duration-300 ${
           errorMessage
             ? "focus:ring-red-500 border-red-500"
@@ -40,9 +38,7 @@ function InputField({
         }`}
         placeholder={`Enter ${label.toLowerCase()}`}
       />
-      {errorMessage && (
-        <p className="text-red-500 text-sm mt-1">{errorMessage}</p>
-      )}
+      {errorMessage && <Error message={errorMessage} type="Input" />}
     </div>
   );
 }
