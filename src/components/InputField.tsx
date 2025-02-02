@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 interface InputFieldProps {
   id: string;
   label: string;
@@ -45,4 +47,4 @@ function InputField({
   );
 }
 
-export default InputField;
+export default memo(InputField);

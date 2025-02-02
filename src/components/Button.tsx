@@ -8,7 +8,7 @@ function Button({ text, type, disabled }: ButtonProps) {
     <button
       type={type}
       disabled={disabled}
-      className="w-full mt-8 cursor-pointer bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition duration-300"
+      className="w-full mt-8 cursor-pointer disabled:cursor-not-allowed bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition duration-300"
     >
       {text}
     </button>
